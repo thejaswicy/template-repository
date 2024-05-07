@@ -83,7 +83,7 @@ async function setBranchProtection(owner, repo, branch) {
 
 const owner = 'thejaswicy';
 const repo = process.env.NEW_REPO_NAME;
-const branch = 'master';
+const branch = 'main';
 
 (async () => {
   try {
