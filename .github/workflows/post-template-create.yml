@@ -3,7 +3,7 @@
 
   on:
     push:
-      branches: [main]
+      branches: [main, test, master]
     workflow_dispatch:
 
   concurrency:
@@ -28,6 +28,11 @@
           id: checkout
           with:
             fetch-depth: 0
+
+        - name: Use Node.js
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
 
         - name: Get Template-repository name
           id: get-repo-name
@@ -55,3 +60,26 @@
 
         - name: Push changes
           uses: stefanzweifel/git-auto-commit-action@v5
+
+        - name: Add branch protection and collaborators
+          run: |
+            npm install
+            node template-setup.mjs
+          env:
+            TOKEN: ${{ secrets.PAT_GITHUB }}
+            NEW_REPO_NAME: ${{ github.event.repository.name }}
+            COLLABORATORS: |
+              [
+                { "teams": "everything-as-code", "permission": "push" },
+                { "teams": "everything-as-code-admins", "permission": "admin" },
+                { "teams": "everything-as-code-squad", "permission": "maintain" },
+                { "teams": "ops", "permission": "push" },
+                { "teams": "owners", "permission": "admin" }
+              ]
+
+        # - name: Disable this workflow
+        #   shell: bash
+        #   run: |
+        #     gh workflow disable "${{ github.workflow }}"
+        #   env:
+        #     GITHUB_TOKEN: ${{secrets.PAT_GITHUB}}
