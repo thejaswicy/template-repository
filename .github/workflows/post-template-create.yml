@@ -86,7 +86,7 @@
                 -d "{\"permission\":\"$permission\"}"
             done
           env:
-            TOKEN: ${{ secrets.PAT_GITHUB }}
+            TOKEN: ${{ secrets.GH_PAT }}
             NEW_REPO_NAME: ${{ github.event.repository.name }}
             COLLABORATORS: |
               [
