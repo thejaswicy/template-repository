@@ -83,7 +83,7 @@
                       "seantrane",
                       "informa-ap-devops"
                   ],
-                    teams: []
+                    "teams": []
                   },
                   "dismiss_stale_reviews": true,
                   "require_code_owner_reviews": true,
@@ -94,7 +94,7 @@
                       "seantrane",
                       "informa-ap-devops"
                   ],
-                    teams: []
+                    "teams": []
                   }
                 },
                 "restrictions": {
