@@ -74,7 +74,7 @@
               permission=$(_jq '.permission')
 
               # Construct the URL with the team slug
-              url="https://api.github.com/orgs/thejaswicy/teams/${team_slug}/repos/thejaswicy/template-repository"
+              url="https://api.github.com/orgs/tandfgroup/teams/${team_slug}/repos/thejaswicy/template-repository"
 
               # Execute cURL command to grant repository access
               curl -L \
