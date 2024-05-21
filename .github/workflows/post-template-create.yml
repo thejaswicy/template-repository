@@ -85,7 +85,7 @@ jobs:
 
       - name: Add Branch Protection
         run: |
-          curl -L \
+          PROTECT_BRANCH=$(curl -L \
             -X PUT \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $GH_TOKEN" \
@@ -129,7 +129,7 @@ jobs:
               "required_conversation_resolution": true,
               "lock_branch": false,
               "allow_fork_syncing": false
-            }'
+            }')
 
       - name: Disable this workflow
         shell: bash
