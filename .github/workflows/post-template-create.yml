@@ -45,12 +45,18 @@ jobs:
           echo "TEMP_REPO_NAME=${TEMPLATE_REPO_NAME}" >> $GITHUB_OUTPUT
 
       - name: Find and Replace
-        if: ${{ steps.get-repo-name.outputs.TEMP_REPO_NAME != 'null' }}
-        uses: richardrigutins/replace-in-files@v2
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
-          files: '*'
-          search-text: '${{ steps.get-repo-name.outputs.TEMP_REPO_NAME }}'
-          replacement-text: '${{ github.event.repository.name }}'
+          find: '${{ steps.get-repo-name.outputs.TEMP_REPO_NAME }}'
+          replace: '${{ github.event.repository.name }}'
+
+      # - name: Find and Replace
+      #   if: ${{ steps.get-repo-name.outputs.TEMP_REPO_NAME != 'null' }}
+      #   uses: richardrigutins/replace-in-files@v2
+      #   with:
+      #     files: '*'
+      #     search-text: '${{ steps.get-repo-name.outputs.TEMP_REPO_NAME }}'
+      #     replacement-text: '${{ github.event.repository.name }}'
 
       - name: Remove File
         run: git rm CHANGELOG.md
