@@ -47,8 +47,8 @@ jobs:
         if: ${{ steps.template.outputs.name != '' && steps.template.outputs.name != 'null' }}
         uses: jacobtomlinson/gha-find-replace@v3
         with:
-          find: '${{ steps.get-repo-name.outputs.TEMPLATE_REPO_NAME }}'
-          replace: '${{ github.event.repository.name }}'
+          find: "${{ steps.get-repo-name.outputs.TEMPLATE_REPO_NAME }}"
+          replace: "${{ github.event.repository.name }}"
 
       - name: Remove File
         run: git rm CHANGELOG.md
